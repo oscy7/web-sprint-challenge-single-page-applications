@@ -1,6 +1,6 @@
 import React from 'react'
 // We'll need a Link and the useRouteMatch hook from 'react-router-dom'
-import { Link, useRouteMatch } from 'react-router-dom';
+// import { Link, useRouteMatch } from 'react-router-dom';
 
 export default function PizzaForm(props){
     const{ values, submit, change, errors } = props
@@ -10,8 +10,8 @@ export default function PizzaForm(props){
         submit()
     }
 
-    const onChange = evt => {
-        const { name, value, checked, type } = evt.target
+    const onChange = event => {
+        const { name, value, checked, type } = event.target
         const realValue = type === 'checkbox' ? checked : value;
         change(name, realValue)
       }
@@ -25,8 +25,6 @@ export default function PizzaForm(props){
                 {/* Make Errors */}
                 <div>
                     <div>{errors.name}</div>
-                    <div>{errors.special}</div>
-                    <div>{errors.size}</div>
                 </div>
             </div>
 
@@ -42,7 +40,7 @@ export default function PizzaForm(props){
                     />
                 </label>
                 <label>Special instructions
-                    <input 
+                    <input id='special-text' 
                         value={values.special}
                         name='special'
                         type='text'
@@ -50,7 +48,7 @@ export default function PizzaForm(props){
                     />
                 </label>
                 {/* Drop Down for Size */}
-                <label>Choose Your size
+                <label>Choose Your Size
                     <select id='size-dropdown'
                         onChange={onChange}
                         value={values.size}
